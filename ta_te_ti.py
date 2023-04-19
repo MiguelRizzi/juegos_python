@@ -48,6 +48,7 @@ while True:
     jugador_mov("X")
     print_tablero()
     if es_victoria("X"):
+        print_tablero()
         print("X es el ganador, felicitaciones.")
         break
     elif es_empate():

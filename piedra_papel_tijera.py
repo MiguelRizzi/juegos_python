@@ -1,6 +1,5 @@
 from random import randint 
 
-
 def jugadas_jugador():
     jugada_jugador = int(input("ingresa 1 para piedra, 2 papel o 3 tijeras: "))
     
@@ -40,7 +39,7 @@ def combate(jugada_jugador, jugada_pc):
     elif jugada_jugador == 3 and jugada_pc == 2:
         print("Ganaste 😊\n")
         victorias_jugador += 1
-    elif int(jugada_jugador) == jugada_pc:
+    elif jugada_jugador == jugada_pc:
         print("Empate 😑\n")
     else:
         print("Perdiste 😔\n")
@@ -70,7 +69,7 @@ def main():
         elif jugada_jugador == 3 and jugada_pc == 2:
             print("Ganaste 😊\n")
             victorias_jugador += 1
-        elif int(jugada_jugador) == jugada_pc:
+        elif jugada_jugador == jugada_pc:
             print("Empate 😑\n")
         else:
             print("Perdiste 😔\n")
