@@ -56,13 +56,17 @@ def movimiento():
         cabeza.setx(x - 10)
         
 def dir_arriba():
-    cabeza.direction = "up"
+    if cabeza.direction != "down":
+        cabeza.direction = "up"
 def dir_abajo():
-    cabeza.direction = "down"
+    if cabeza.direction != "up":
+        cabeza.direction = "down"
 def dir_derecha():
-    cabeza.direction = "right"
+    if cabeza.direction != "left":
+        cabeza.direction = "right"
 def dir_izquierda():
-    cabeza.direction = "left"
+    if cabeza.direction != "right":
+        cabeza.direction = "left"
                 
 # Conectar teclado    
 ventana.listen()
@@ -82,7 +86,11 @@ def reiniciar_juego():
             seg.goto(1000, 1000)
         segmentos.clear()
 
-
+# Score
+def actualizar_score():
+    global score, score_historico
+    texto.clear()
+    texto.write(f"Score: {score}       High Score: {score_historico}", align="center", font=("Arial", 24))
 
 while True:
     ventana.update()
@@ -100,12 +108,10 @@ while True:
         nuevo_segmento.penup()
         segmentos.append(nuevo_segmento)
         
-        # Score
         score += 10
         if score > score_historico:
             score_historico = score
-        texto.clear()
-        texto.write(f"Score: {score}       High Score: {score_historico}", align="center", font=("Arial", 24))
+        actualizar_score()
     total_segmentos = len(segmentos)   
     
     # Se obtienen las coordenadas del segmento anterior y se asignan al segmento actual
@@ -123,8 +129,7 @@ while True:
     if cabeza.xcor() > 280 or cabeza.xcor() < -280 or cabeza.ycor() > 280 or cabeza.ycor() < -280:
         reiniciar_juego()
         score = 0
-        texto.clear()
-        texto.write(f"Score: {score}       High Score: {score_historico}", align="center", font=("Arial", 24))
+        actualizar_score()
        
     movimiento()
     # Colision con el propio cuerpo
@@ -132,8 +137,7 @@ while True:
         if seg.distance(cabeza) < 10:
             reiniciar_juego()
             score = 0
-            texto.clear()
-            texto.write(f"Score: {score}       High Score: {score_historico}", align="center", font=("Arial", 24))
+            actualizar_score()
       
     time.sleep(delay)
 
