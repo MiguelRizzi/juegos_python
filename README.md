@@ -1,1 +1,1 @@
-# ejercicios_python
+# juegos_python
